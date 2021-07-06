@@ -1,0 +1,30 @@
+code_name: 'MOPAC'
+docker:
+  image_name: 'mdi_mc/mopack_report'
+
+  build_image:
+    - apt-get update
+    - apt-get install -y git wget
+    - pip install cmake
+
+  build_engine:
+    - |
+      if [ ! -d "build/MOPAC" ]; then
+        git clone https://github.com/jchen0506/MOPAC.git build/MOPAC
+      fi
+    - mkdir build/MOPAC/build
+    - cd build/MOPAC/build
+    - cmake ../cmake
+    - cmake --build .
+    - echo "Finished build_engine step"
+
+
+  validate_engine:
+    - echo "Insert code that will confirm that your code has been built successfully"
+    - exit 1
+
+engine_tests:
+  # Provide at least one example input that can be used to test your code's MDI functionality
+  - script:
+      - echo "Insert commands to run an example calculation here"
+      - exit 1
