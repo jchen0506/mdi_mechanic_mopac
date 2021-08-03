@@ -6,15 +6,13 @@ docker:
     - apt-get update
     - apt-get install -y git wget
     - pip install cmake
+    - apt-get install -y libblas-dev liblapack-dev
 
   build_engine:
-    - |
-      if [ ! -d "build/MOPAC" ]; then
-        git clone https://github.com/jchen0506/MOPAC.git build/MOPAC
-      fi
-    - mkdir build/MOPAC/build
-    - cd build/MOPAC/build
-    - cmake ../cmake
+    - cd build/MOPAC
+    - mkdir -p build
+    - cd build
+    - cmake ../
     - cmake --build .
     - echo "Finished build_engine step"
 

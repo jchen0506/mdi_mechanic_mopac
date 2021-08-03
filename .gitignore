@@ -147,3 +147,5 @@ docker/.temp
 
 # Source directory
 /source
+
+.DS_Store
