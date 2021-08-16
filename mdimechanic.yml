@@ -18,8 +18,23 @@ docker:
 
 
   validate_engine:
-    - echo "Insert code that will confirm that your code has been built successfully"
-    - exit 1
+    # Confirm that the engine's executable exists
+    - ENGINE_EXECUTABLE="build/MOPAC/build/mopac"
+    - |
+      if test -f "$ENGINE_EXECUTABLE"; then
+        echo "$ENGINE_EXECUTABLE exists"
+      else
+        echo "Could not find engine executable: $ENGINE_EXECUTABLE"
+        exit 1
+      fi
+
+    # Run a test calculation to confirm that the engine can run correctly
+    - cd build/MOPAC/tests/
+    - ../../../${ENGINE_EXECUTABLE} benzene.mop benzene.out
+    - echo "Test output:"
+    - cat benzene.out
+
+
 
 engine_tests:
   # Provide at least one example input that can be used to test your code's MDI functionality
