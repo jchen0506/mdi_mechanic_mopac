@@ -10,6 +10,7 @@ docker:
 
   build_engine:
     - cd build/MOPAC
+    - git checkout MDI
     - mkdir -p build
     - cd build
     - cmake ../
