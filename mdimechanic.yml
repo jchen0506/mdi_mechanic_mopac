@@ -39,6 +39,7 @@ docker:
 
 engine_tests:
   # Provide at least one example input that can be used to test your code's MDI functionality
-  - script:
-      - echo "Insert commands to run an example calculation here"
-      - exit 1
+  script:
+      - export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/repo/build/MOPAC/build
+      - cd build/MOPAC/tests/
+      - ../../build/MOPAC/build/mopac -mdi "${MDI_OPTIONS}" -in benzene.mop benzene.out
